@@ -1,0 +1,17 @@
+import requests
+
+def check_website_status(url):
+    try:
+        response = requests.get(url)
+        # Check if the status code is in the range of 200-299 (indicating success)
+        if response.status_code >= 200 and response.status_code < 300:
+            return f"The website {url} is reachable. Status code: {response.status_code}"
+        else:
+            return f"The website {url} is not reachable. Status code: {response.status_code}"
+    except requests.ConnectionError:
+        return f"Could not connect to the website {url}"
+
+# Example usage:
+website_url = "https://www.example.com"
+result = check_website_status(website_url)
+print(result)
